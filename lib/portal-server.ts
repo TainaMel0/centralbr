@@ -29,7 +29,7 @@ export async function hash(value:string){return Array.from(new Uint8Array(await 
 export async function getPortal():Promise<PortalData>{
   const p=await principal(true);if(p.role==='pending')return {role:p.role,companies:[],equipment:[],certificates:[],members:[]};
   const scoped=(sql:string)=>p.role==='admin'?db().prepare(sql):db().prepare(sql).bind(p.companyId!);
-  const result=await db().batch([
+  const result = await env.DB.prepare(query).all() as MyType;
     scoped('SELECT id,name,cnpj,contact FROM companies'+(p.role==='admin'?'':' WHERE id=?')+' ORDER BY name'),
     scoped('SELECT id,company_id AS companyId,name,category,brand,model,serial,tag,location FROM equipment'+(p.role==='admin'?'':' WHERE company_id=?')+' ORDER BY name'),
     scoped('SELECT c.id,c.equipment_id AS equipmentId,c.number,c.calibrated_at AS calibratedAt,c.next_at AS nextAt,c.notes,c.file_name AS fileName,c.created_at AS createdAt FROM certificates c JOIN equipment e ON e.id=c.equipment_id'+(p.role==='admin'?'':' WHERE e.company_id=?')+' ORDER BY c.calibrated_at DESC,c.created_at DESC'),
