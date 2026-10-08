@@ -1,0 +1,1 @@
+var e=[`Detector de gás`,`Bafômetro`,`Termômetro`,`Dosímetro`,`Sonômetro`,`Dinamômetro`,`Outros`],t=()=>new Date().toISOString().slice(0,10);export{t as n,e as t};

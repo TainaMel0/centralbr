@@ -1,0 +1,1 @@
+import{a as e,f as t,s as n}from"./portal-server-Cox41Q6c.js";var r=`force-dynamic`;async function i(){try{return t(await n())}catch(t){return e(t)}}export{i as GET,r as dynamic};
