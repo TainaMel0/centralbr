@@ -1,1 +1,0 @@
-import{a as e,d as t,f as n,i as r,l as i,n as a,o}from"./portal-server-Cox41Q6c.js";async function s(s){try{i(s),await a();let e=o((await t(s)).userId,`usuário`,200);return await r().batch([r().prepare(`DELETE FROM invitations WHERE used_by=?`).bind(e),r().prepare(`DELETE FROM members WHERE user_id=?`).bind(e)]),n({ok:!0})}catch(t){return e(t)}}export{s as DELETE};
